@@ -1,0 +1,59 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "hello-world",
+      "settings": {}
+    },
+    "testimonials_YagQfH": {
+      "type": "testimonials",
+      "blocks": {
+        "testimonial_FUMNaQ": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "This product is such a classic, love this piece",
+            "author": "John Cena",
+            "rating": 5
+          }
+        },
+        "testimonial_KkfHpJ": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "This has everything I needed",
+            "author": "Lycan Thrope",
+            "rating": 4
+          }
+        },
+        "testimonial_bBpkim": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "And Now We're Starting",
+            "author": "Over Again",
+            "rating": 3
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_FUMNaQ",
+        "testimonial_KkfHpJ",
+        "testimonial_bBpkim"
+      ],
+      "name": "Testimonials",
+      "settings": {
+        "heading": "What our customers say"
+      }
+    }
+  },
+  "order": [
+    "testimonials_YagQfH",
+    "main"
+  ]
+}
