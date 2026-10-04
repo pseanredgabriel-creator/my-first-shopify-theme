@@ -1,0 +1,21 @@
+{% doc %}
+  Renders a row of star icons for a rating.
+
+  @param {number} rating - Number of filled stars
+  @param {number} [max] - Total stars to show. Defaults to 5.
+
+  @example
+  {% render 'star-rating', rating: 4 %}
+{% enddoc %}
+
+{%- liquid
+  assign max = max | default: 5
+  assign empty_count = max | minus: rating
+-%}
+
+<span class="star-rating" role="img" aria-label="{{ rating }} out of {{ max }} stars">
+  {%- for i in (1..rating) -%}★{%- endfor -%}
+  {%- if empty_count > 0 -%}
+    <span class="star-rating__empty">{%- for i in (1..empty_count) -%}★{%- endfor -%}</span>
+  {%- endif -%}
+</span>

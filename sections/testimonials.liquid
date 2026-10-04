@@ -8,7 +8,7 @@
       {% for block in section.blocks %}
         <figure class="testimonial" {{ block.shopify_attributes }}>
           <div class="testimonial__stars">
-            {% for i in (1..block.settings.rating) %}★{% endfor %}
+             {% render 'star-rating', rating: block.settings.rating %}
           </div>
           <blockquote>"{{ block.settings.quote }}"</blockquote>
           <figcaption>— {{ block.settings.author }}</figcaption>
@@ -46,6 +46,10 @@
   .testimonial__stars {
     color: #f5a623;
     font-size: 1.25rem;
+    
+  }
+  .star-rating__empty {
+    color: #c4c4c4;
   }
   .testimonial blockquote {
     margin: 12px 0;
