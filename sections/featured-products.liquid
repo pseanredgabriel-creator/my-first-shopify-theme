@@ -1,0 +1,138 @@
+{%- assign featured_collection = section.settings.collection -%}
+
+<div class="featured-products full-width">
+  <div class="featured-products__inner">
+    {% if section.settings.heading != blank %}
+      <h2 class="featured-products__heading">{{ section.settings.heading }}</h2>
+    {% endif %}
+
+    <ul class="featured-products__grid">
+      {% if featured_collection != blank %}
+        {% for product in featured_collection.products limit: section.settings.products_to_show %}
+          <li class="product-card">
+            {% if product.featured_image %}
+              {% render 'image',
+                class: 'product-card__image',
+                image: product.featured_image,
+                url: product.url,
+                width: 600,
+                height: 600,
+                crop: 'center'
+              %}
+            {% endif %}
+
+            <h3 class="product-card__title">
+              <a href="{{ product.url }}">{{ product.title | escape }}</a>
+            </h3>
+
+            <p class="product-card__price">
+              {% if product.compare_at_price > product.price %}
+                <span class="product-card__sale">{{ product.price | money }}</span>
+                <s>{{ product.compare_at_price | money }}</s>
+              {% else %}
+                {{ product.price | money }}
+              {% endif %}
+            </p>
+          </li>
+        {% else %}
+          <li>This collection has no products yet.</li>
+        {% endfor %}
+      {% else %}
+        {% for i in (1..section.settings.products_to_show) %}
+          <li class="product-card">
+            <div class="product-card__placeholder">{{ 'product-1' | placeholder_svg_tag }}</div>
+            <h3 class="product-card__title">Example product</h3>
+            <p class="product-card__price">{{ 1999 | money }}</p>
+          </li>
+        {% endfor %}
+      {% endif %}
+    </ul>
+  </div>
+</div>
+
+{% stylesheet %}
+  .featured-products {
+    display: grid;
+    grid-template-columns: var(--content-grid);
+    padding: 64px 0;
+  }
+  .featured-products__inner {
+    grid-column: 2;
+    padding: 0 24px;
+  }
+  .featured-products__heading {
+    text-align: center;
+    margin-bottom: 32px;
+  }
+  .featured-products__grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 24px;
+  }
+  .product-card__image,
+  .product-card__placeholder {
+    border-radius: 12px;
+    overflow: hidden;
+    background: #f6f6f7;
+    aspect-ratio: 1;
+  }
+  .product-card__placeholder svg {
+    width: 100%;
+    height: 100%;
+  }
+  .product-card__title {
+    font-size: 1rem;
+    margin: 12px 0 4px;
+  }
+  .product-card__title a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .product-card__title a:hover {
+    text-decoration: underline;
+  }
+  .product-card__price {
+    margin: 0;
+  }
+  .product-card__sale {
+    color: #c0392b;
+    font-weight: 600;
+    margin-right: 6px;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Featured products",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Featured products"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "label": "Products to show",
+      "min": 2,
+      "max": 12,
+      "step": 1,
+      "default": 4
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured products"
+    }
+  ]
+}
+{% endschema %}

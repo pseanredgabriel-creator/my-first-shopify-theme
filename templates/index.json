@@ -9,10 +9,6 @@
  */
 {
   "sections": {
-    "main": {
-      "type": "hello-world",
-      "settings": {}
-    },
     "testimonials_YagQfH": {
       "type": "testimonials",
       "blocks": {
@@ -50,10 +46,24 @@
       "settings": {
         "heading": "What our customers say"
       }
+    },
+    "main": {
+      "type": "hello-world",
+      "settings": {}
+    },
+    "featured_products_kcqDVt": {
+      "type": "featured-products",
+      "name": "Featured products",
+      "settings": {
+        "heading": "Featured products",
+        "collection": "automated-collection",
+        "products_to_show": 8
+      }
     }
   },
   "order": [
     "testimonials_YagQfH",
-    "main"
+    "main",
+    "featured_products_kcqDVt"
   ]
 }
